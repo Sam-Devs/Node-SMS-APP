@@ -1,8 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const dotenv = require("dotenv");
-
-dotenv.config();
 
 // Get authentication
 const credentials = {
@@ -15,7 +12,10 @@ const AfricasTalking = require("africastalking")(credentials);
 const sms = AfricasTalking.SMS;
 // Send SMS route
 router.post("/", (req, res) => {
-  const { to, message } = req.body || res.status(400).json({error: "Both 'to' and 'message' are required"});
+  const { to, message } = req.body 
+  
+  if(!to || !message) res.status(400).json({error: "Both 'to' and 'message' are required"});
+  
   sms
     .send({ to, message, enque: true })
     .then(response => {
@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
     })
     .catch(error => {
       console.log(error);
-      res.json(error.toString());
+      res.statue(400).json(error.toString());
     });
 });
 

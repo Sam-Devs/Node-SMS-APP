@@ -1,15 +1,14 @@
 const express = require("express");
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config();
 const smsRoute = require("./index");
-const bodyParser = require("body-parser");
 
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => console.log(`running on localhost:${PORT}`));
-
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/", smsRoute);
+
+app.listen(PORT, () => console.log(`running on localhost:${PORT}`));
