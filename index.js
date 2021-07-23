@@ -15,7 +15,7 @@ router.post("/", (req, res) => {
   const { to, message } = req.body 
   
   if(!to || !message) res.status(400).json({error: "Both 'to' and 'message' are required"});
-  
+
   sms
     .send({ to, message, enque: true })
     .then(response => {
@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
     })
     .catch(error => {
       console.log(error);
-      res.statue(400).json(error.toString());
+      res.status(400).json(error.toString());
     });
 });
 
