@@ -5,6 +5,9 @@
   "repository": "https://github.com/Sam-Devs/Node-SMS-APP.git",
   "author": "Sam Ayorinde <41350405+Sam-Devs@users.noreply.github.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
   "dependencies": {
     "africastalking": "^0.5.4",
     "body-parser": "^1.19.0",
